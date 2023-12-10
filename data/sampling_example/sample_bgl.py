@@ -16,7 +16,7 @@ def load_BGL():
     bgl_structured['label'] = (bgl_structured['label'] != '-').astype(int)
     return bgl_structured
 
-
+# 滑动窗口有点让人不理解
 def bgl_sampling(bgl_structured):
 
     label_data,time_data,event_mapping_data = bgl_structured['label'].values,bgl_structured['seconds_since'].values,bgl_structured['event_id'].values
@@ -32,9 +32,13 @@ def bgl_sampling(bgl_structured):
             end_index += 1
             end_time = cur_time
         else:
+            # tuple() 是 Python 内置函数之一，用于将一个可迭代对象转换为元组。
+            # 元组是 Python 中的一种序列类型，与列表类似，但是元组是不可变的，即不能修改元组中的元素。
+            # 在你的例子中，tuple((start_index,end_index)) 将 (start_index, end_index) 转换为一个元组。
             start_end_pair = tuple((start_index,end_index))
             start_end_index_list.append(start_end_pair)
             break
+    # 拿step_size  * 3600 作为窗口， 0.2小时作为窗口，存储数据
     while end_index < log_size:
         start_time = start_time + para["step_size"]*3600
         end_time = end_time + para["step_size"]*3600
@@ -63,6 +67,8 @@ def bgl_sampling(bgl_structured):
     expanded_indexes_list=[[] for i in range(inst_number)]
     expanded_event_list=[[] for i in range(inst_number)]
 
+    # event_mapping_data = bgl_structured['event_id'].values
+    # 把分好组的 event_id用 expanded_event_list 存储起来
     for i in range(inst_number):
         start_index = start_end_index_list[i][0]
         end_index = start_end_index_list[i][1]
@@ -71,8 +77,10 @@ def bgl_sampling(bgl_structured):
             expanded_event_list[i].append(event_mapping_data[l])
     #=============get labels and event count of each sliding window =========#
 
+    # labels 记录这一组中是否有异常
     labels = []
 
+    # label_data = bgl_structured['label'].values
     for j in range(inst_number):
         label = 0   #0 represent success, 1 represent failure
         for k in expanded_indexes_list[j]:
@@ -89,6 +97,7 @@ def bgl_sampling(bgl_structured):
     BGL_sequence['label'] = labels
     BGL_sequence.to_csv(para["BGL_sequence"],index=None)
 
+# 总的来说就是分组，对于每一组是否有异常进行检测。labels存储的就是这一组有异常。
 if __name__ == "__main__":
     bgl_structured = load_BGL()
     bgl_sampling(bgl_structured)

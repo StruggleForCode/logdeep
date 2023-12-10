@@ -75,6 +75,15 @@ def predict():
 
 
 if __name__ == "__main__":
+    # 这段代码是使用 Python 的 argparse 模块来解析命令行参数的。
+    # argparse 模块可以让人轻松编写用户友好的命令行接口。
+    # 程序定义它需要哪些参数，argparse 将会知道如何从 sys.argv 解析它们。
+    # 在这段代码中，我们创建了一个 ArgumentParser 对象，然后使用 add_argument() 方法将单个参数规格说明关联到解析器。
+    # 最后，我们调用 parse_args() 方法来解析命令行参数并将其转换为对象。
+    # 这段代码中，我们定义了一个名为 mode 的位置参数，它只能取两个值：train 或 predict。
+    # 如果用户输入的参数不在这两个值中，程序将会抛出错误。
+
+
     parser = argparse.ArgumentParser()
     parser.add_argument('mode', choices=['train', 'predict'])
     args = parser.parse_args()

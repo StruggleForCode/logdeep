@@ -7,6 +7,7 @@ import pandas as pd
 from tqdm import tqdm
 para = {"bgl":"bgl/bgl2_100k","template":"bgl/templates.csv","structured_file":"bgl/BGL_100k_structured.csv"}
 # read origin logs
+# 读文件，python 中这样写
 def data_read(filepath):
     fp = open(filepath, "r")
     datas = []
@@ -58,7 +59,9 @@ def structure(BGL,eventmap):
     BGL_structured["time"] = time
     BGL_structured["event_id"] = eventmap
     # Remove logs which do not match the template(very few logs ......)
+    # 在这里，-BGL_structured["event_id"].isin(["error"]) 表示删除 event_id 列中值为 “error” 的行
     BGL_structured = BGL_structured[(-BGL_structured["event_id"].isin(["error"]))]
+    # 在这里，index=None 表示不将行索引写入到csv文件中
     BGL_structured.to_csv(para["structured_file"],index=None)
 
 if __name__ == "__main__":
