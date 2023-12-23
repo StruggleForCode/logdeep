@@ -4,7 +4,6 @@ import numpy as np
 para = {"window_size":0.5,"step_size":0.2,"structured_file":"bgl/BGL_100k_structured.csv","BGL_sequence":'bgl/BGL_sequence.csv'}
 
 def load_BGL():
-
     structured_file = para["structured_file"]
     # load data
     bgl_structured = pd.read_csv(structured_file) 
@@ -13,6 +12,7 @@ def load_BGL():
     # calculate the time interval since the start time
     bgl_structured["seconds_since"] = (bgl_structured['time']-bgl_structured['time'][0]).dt.total_seconds().astype(int)
     # get the label for each log("-" is normal, else are abnormal label)
+    # 将'-'转换为0，将其他值转换为1
     bgl_structured['label'] = (bgl_structured['label'] != '-').astype(int)
     return bgl_structured
 

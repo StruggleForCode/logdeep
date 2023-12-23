@@ -39,6 +39,10 @@ class Trainer():
         self.sample = options['sample']
         self.feature_num = options['feature_num']
 
+        # 这段代码的作用是在文件系统中创建目录（文件夹），并且如果目录已经存在，不会引发错误
+        # os.makedirs 是一个用于递归创建目录的函数，可以创建多层嵌套的目录结构。
+        # self.save_dir 是目录的路径，这个路径通常是在训练过程中保存模型、日志等文件的根目录。
+        # exist_ok=True 参数表示，如果目录已经存在，不会引发 FileExistsError 错误。如果设置为 False（默认值），如果目录已经存在，将会引发错误。
         os.makedirs(self.save_dir, exist_ok=True)
         if self.sample == 'sliding_window':
             train_logs, train_labels = sliding_window(self.data_dir,
@@ -66,9 +70,13 @@ class Trainer():
                                     seq=self.sequentials,
                                     quan=self.quantitatives,
                                     sem=self.semantics)
-
+        # del 删除变量
         del train_logs
         del val_logs
+        # gc.collect() 是 Python 中的一种语句，用于手动触发垃圾回收机制。
+        # Python 的垃圾回收机制是自动的，但是在某些情况下，手动触发垃圾回收机制可以释放内存并提高程序的性能。
+        # gc.collect() 函数可以接受一个参数 generation，用于指定回收的代数。
+        # 如果不传入参数，则默认回收所有代数的垃圾对象。
         gc.collect()
 
         self.train_loader = DataLoader(train_dataset,
@@ -90,6 +98,10 @@ class Trainer():
 
         self.model = model.to(self.device)
 
+        # SGD 优化器，
+        # Adam 优化器
+        # self.model.parameters() 是模型的参数，lr 是学习率，momentum 和 betas 是优化器的超参数，用于控制优化器的行为。
+        # SGD 优化器使用动量来加速梯度下降的过程，而 Adam 优化器则使用自适应学习率来调整每个参数的更新步长
         if options['optimizer'] == 'sgd':
             self.optimizer = torch.optim.SGD(self.model.parameters(),
                                              lr=options['lr'],

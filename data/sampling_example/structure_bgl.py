@@ -2,6 +2,9 @@
 # 1. read origin logs
 # 2. extract label, time and origin event
 # 3. match event to the template
+# 构建自己的日志
+# 此python代码主要是读取bgl2_100k文件，并把它每一行的第九个值之后的字符串和 templates 中 EventTemplate 匹配，然后提取时间，标签，还有匹配的值
+# 组成一个表格BGL_100k_structured.csv, 输出文件。
 import re
 import pandas as pd
 from tqdm import tqdm
@@ -60,6 +63,7 @@ def structure(BGL,eventmap):
     BGL_structured["event_id"] = eventmap
     # Remove logs which do not match the template(very few logs ......)
     # 在这里，-BGL_structured["event_id"].isin(["error"]) 表示删除 event_id 列中值为 “error” 的行
+    # error 是提前 标记的 行，匹配不到模版 46行
     BGL_structured = BGL_structured[(-BGL_structured["event_id"].isin(["error"]))]
     # 在这里，index=None 表示不将行索引写入到csv文件中
     BGL_structured.to_csv(para["structured_file"],index=None)
