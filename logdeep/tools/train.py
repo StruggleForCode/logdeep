@@ -97,7 +97,7 @@ class Trainer():
               (options['batch_size'], options['batch_size']))
 
         self.model = model.to(self.device)
-
+        # This is test github connect
         # SGD 优化器，
         # Adam 优化器
         # self.model.parameters() 是模型的参数，lr 是学习率，momentum 和 betas 是优化器的超参数，用于控制优化器的行为。
