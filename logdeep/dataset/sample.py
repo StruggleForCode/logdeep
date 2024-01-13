@@ -85,6 +85,14 @@ def down_sample(logs, labels, sample_ratio):
     - 返回`result_logs`和`labels`作为函数的输出。
 '''
 
+# 这段代码定义了一个名为`sliding_window`的函数，它用于从HDFS（Hadoop Distributed File System）日志数据中生成滑动窗口的数据集。
+# 1. **函数签名**：
+#     - `sliding_window(data_dir, datatype, window_size, sample_ratio=1)`
+#     - 参数：
+#         - `data_dir`: 包含HDFS日志数据的目录路径。
+#         - `datatype`: 数据集的类型，可以是'train'或'val'。
+#         - `window_size`: 滑动窗口的大小。
+#         - `sample_ratio`: 数据集的采样比例，默认为1。
 def sliding_window(data_dir, datatype, window_size, sample_ratio=1):
     '''
     dataset structure
@@ -95,6 +103,11 @@ def sliding_window(data_dir, datatype, window_size, sample_ratio=1):
         labels(list)
     '''
     # 从JSON文件中读取事件到语义向量的映射
+    # 2. **数据结构初始化**：
+    #     - `event2semantic_vec`: 从JSON文件中读取的事件到语义向量的映射。
+    #     - `num_sessions`: 记录会话的数量。
+    #     - `result_logs`: 一个字典，包含三个键：'Sequentials'、'Quantitatives'和'Semantics'，分别对应序列、数量和语义的日志信息。
+    #     - `labels`: 用于存储标签的列表。
     event2semantic_vec = read_json(data_dir + 'hdfs/event2semantic_vec.json')
     # 记录会话的数量
     num_sessions = 0
@@ -168,6 +181,46 @@ def sliding_window(data_dir, datatype, window_size, sample_ratio=1):
     return result_logs, labels
 
 
+'''
+这段代码定义了一个名为`session_window`的函数，该函数的作用是从给定的CSV文件中读取日志数据，对每个日志序列进行处理，提取序列的一些特征（Sequential、Quantitative、Semantic），并最终返回处理后的结果和相应的标签。
+下面是代码的主要解释：
+1. **参数：**
+   - `data_dir`: 数据目录路径，用于读取日志数据和其他文件。
+   - `datatype`: 数据类型，可以是 'train'、'val' 或 'test'，决定了要读取哪个数据集的文件。
+   - `sample_ratio`: 采样比例，默认为1，表示不进行采样。
+   
+2. **读取`event2semantic_vec`：**
+   - 从指定目录下的 'hdfs/event2semantic_vec.json' 文件中读取 `event2semantic_vec` 数据，这是一个字典，将事件ID映射到语义向量。
+
+3. **初始化结果字典和标签列表：**
+   - `result_logs` 字典包含三个键：'Sequentials'、'Quantitatives'、'Semantics'，分别用于存储处理后的序列、数量和语义特征。
+   - `labels` 列表用于存储每个日志序列的标签。
+
+4. **根据数据类型构造文件路径：**
+   - 根据给定的 `datatype` 参数，构造相应的CSV文件路径。
+
+5. **读取CSV文件：**
+   - 使用 `pd.read_csv` 从构造的文件路径中读取CSV文件，得到一个DataFrame对象 `train_df`。
+
+6. **处理每个日志序列：**
+   - 遍历 DataFrame 中的每一行，对每个日志序列进行以下处理：
+     - 提取原始序列 `ori_seq`，将其转换为整数列表。
+     - 使用 `trp` 函数对序列进行处理，得到 `Sequential_pattern`。
+     - 构造 `Semantic_pattern`，将每个事件映射为语义向量。
+     - 构造 `Quantitative_pattern`，统计序列中每个事件的出现次数。
+     - 将结果存储在 `result_logs` 字典中。
+
+7. **数据采样：**
+   - 如果 `sample_ratio` 不等于1，调用 `down_sample` 函数对结果进行下采样。
+
+8. **打印结果数量信息：**
+   - 打印处理后的日志数量。
+
+9. **返回结果：**
+   - 返回处理后的结果字典 `result_logs` 和标签列表 `labels`。
+
+这个函数主要用于日志数据的预处理，提取了日志序列的不同特征，为后续的机器学习任务做准备。在这个过程中，使用了一些外部的函数和库，例如 `trp` 函数、`Counter` 类、NumPy 和 pandas。
+'''
 def session_window(data_dir, datatype, sample_ratio=1):
     event2semantic_vec = read_json(data_dir + 'hdfs/event2semantic_vec.json')
     result_logs = {}
