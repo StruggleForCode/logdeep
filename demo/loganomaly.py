@@ -50,7 +50,7 @@ options['model_name'] = "loganomaly"
 options['save_dir'] = "../result/loganomaly/"
 
 # Predict
-options['model_path'] = "../result/loganomaly/loganomaly_epoch299.pth"
+options['model_path'] = "../result/loganomaly/loganomaly_last.pth"
 options['num_candidates'] = 9
 
 seed_everything(seed=1234)
@@ -77,8 +77,8 @@ def predict():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('mode', choices=['train', 'predict'])
-    args = parser.parse_args()
-    if args.mode == 'train':
-        train()
-    else:
-        predict()
+    # args = parser.parse_args()
+    # if args.mode == 'train':
+    #train()
+    # else:
+    predict()

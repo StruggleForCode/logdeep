@@ -20,10 +20,10 @@ def data_read(filepath):
     return datas
 
 
-hdfs_train = data_read('data/hdfs_train')
-hdfs_test_normal = data_read('data/hdfs_test_normal')
+hdfs_train = data_read('hdfs_train')
+hdfs_test_normal = data_read('hdfs_test_normal')
 
-hdfs_test_abnormal = data_read('data/hdfs_test_abnormal')
+hdfs_test_abnormal = data_read('hdfs_test_abnormal')
 hdfs_train.extend(hdfs_test_normal)
 normal_all = hdfs_train
 abnormal = hdfs_test_abnormal
@@ -65,6 +65,6 @@ train_new = DataFrame({"Sequence": train_all, "label": train_all_label})
 valid_new = DataFrame({"Sequence": valid_all, "label": valid_all_label})
 test_new = DataFrame({"Sequence": test_all, "label": test_all_label})
 
-train_new.to_csv('data/train.csv', index=None)
-valid_new.to_csv('data/valid.csv', index=None)
-test_new.to_csv('data/test.csv', index=None)
+train_new.to_csv('train.csv', index=None)
+valid_new.to_csv('valid.csv', index=None)
+test_new.to_csv('test.csv', index=None)

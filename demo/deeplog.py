@@ -138,6 +138,6 @@ if __name__ == "__main__":
     parser.add_argument('mode', choices=['train', 'predict'])
     # args = parser.parse_args()
     #if args.mode == 'train':
-    train()
+    #train()
     #else:
-     #   predict()
+    predict()

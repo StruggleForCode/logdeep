@@ -1,0 +1,262 @@
+{
+    "1": [
+        "check",
+        "pass",
+        "user",
+        "unknown"
+    ],
+    "2": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "3": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "5": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "6": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "7": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "8": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "9": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "12": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "13": [
+        "session",
+        "user",
+        "cyrus"
+    ],
+    "14": [
+        "session",
+        "user",
+        "cyrus"
+    ],
+    "16": [
+        "session",
+        "user",
+        "news"
+    ],
+    "17": [
+        "session",
+        "user",
+        "news"
+    ],
+    "18": [
+        "check",
+        "pass",
+        "user",
+        "unknown"
+    ],
+    "32": [
+        "check",
+        "pass",
+        "user",
+        "unknown"
+    ],
+    "33": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "30": [
+        "check",
+        "pass",
+        "user",
+        "unknown"
+    ],
+    "34": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "35": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "23": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "36": [
+        "check",
+        "pass",
+        "user",
+        "unknown"
+    ],
+    "37": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "38": [
+        "check",
+        "pass",
+        "user",
+        "unknown"
+    ],
+    "22": [
+        "check",
+        "pass",
+        "user",
+        "unknown"
+    ],
+    "39": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "40": [
+        "check",
+        "pass",
+        "user",
+        "unknown"
+    ],
+    "41": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "42": [
+        "check",
+        "pass",
+        "user",
+        "unknown"
+    ],
+    "43": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "65": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "105": [
+        "authentication",
+        "failure",
+        "logname",
+        "uid",
+        "euid",
+        "tty",
+        "ruser",
+        "rhost"
+    ],
+    "108": [
+        "check",
+        "pass",
+        "user",
+        "unknown"
+    ]
+}

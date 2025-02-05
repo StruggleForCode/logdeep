@@ -75,10 +75,10 @@ def predict():
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('mode', choices=['train', 'predict'])
-    args = parser.parse_args()
-    if args.mode == 'train':
-        train()
-    else:
-        predict()
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument('mode', choices=['train', 'predict'])
+    # args = parser.parse_args()
+    # if args.mode == 'train':
+    #train()
+    # else:
+    predict()
